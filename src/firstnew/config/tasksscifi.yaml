@@ -1,0 +1,33 @@
+ideas_task:
+  description: >
+    Generate 10 innovative near-future sci-fi story ideas, each exploring a unique scientific or technological concept and its potential impact on society. 
+    Ensure that each concept is grounded in current scientific trends or emerging technologies, 
+    but pushes the boundaries of what's currently possible. Avoid rehashing common sci-fi tropes; instead, strive for fresh angles on familiar themes or entirely novel concepts. 
+    Your ideas should spark curiosity and provoke thought about potential future scenarios. Include a mix of utopian and dystopian elements, showing both the promise and perils 
+    of technological advancement. Aim for a tone that's intellectually stimulating yet accessible, avoiding overly technical jargon.
+  expected_output: >
+    10 unique near-future sci-fi story ideas. Each idea should be:
+    Focused on a specific scientific or technological concept
+    Suggestive of potential societal implications
+
+research_task:
+  description: >
+    Conduct thorough research on the given topic from the ideas_task i. Ensure you find any interesting and relevant information.  Use ALL of the tools avaliable to you Dont just use one.
+    Rephrase your search queries each time you use the search tool and make sure they are unique. Choose a different search query each time! We want a diverse set of information. 
+    DONT REPEAT YOUSELF when using the search tools! Use all of your tools not just one!
+    Chose a random rsult each time, not just the first one.
+  expected_output: >
+    Research for the ideas for 2 stories about the ideas created by the ideas_task. 
+reporting_task:
+  description: >
+    For each of the 2 story ideas provided by your idea generator, develop 2 FULL SHORT STORIES of no less than 12000 words each. Ensure each story is richly detailed and explores 
+    the scientific and societal implications of your chosen near-future scenario. If more background information is needed, consult your research assistant. Format each as a 
+    compelling short story with a clear narrative arc. Avoid clichéd sci-fi tropes and predictable endings. They should be thought-provoking yet accessible. Steer clear of 
+    overly complex jargon and convoluted plot structures. Aim for a tone that's engaging and contemporary, avoiding any stilted or robotic language. Use dialog, and multiple 
+    scenes and locations for your charicters. Maintain charicter consistancy. We want a diverse set of information. DONT REPEAT YOUSELF when asking for new information! 
+    Use the context given to you by the research_task and the ideas_task.
+
+  expected_output: >
+    2 fully-developed short stories exploring near-future scenarios, each no less than 12000 words!!  This word count is manditory. Each story should be formatted in markdown (without code blocks), 
+    separated by three line breaks, and have a unique, intriguing title. formatted in markdown (without '```'), 
+    separated by three spaces, and have a unique title.

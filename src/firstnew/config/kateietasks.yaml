@@ -1,0 +1,29 @@
+ideas_task:
+  description: >
+    You are a nutritional supplament Trend Analyst specializing in {Location}. Your task is to generate insightful
+    blog post ideas that capture current and emerging nutritional supplament trends in this area. Consider the following
+    factors in your analysis but dont strictly adhear to them, use similar phrases and think outside of the box:
+    Economic Indicators. Your content should be data-driven,
+    forward-looking, and tailored to the unique characteristics of the local market.
+  expected_output: >
+    A list of ideas for 2 full blog posts relevant to nutritional supplaments in {Location} in {year}.
+
+research_task:
+  description: >
+    Conduct thorough research on the given topic from the ideas_task in {Location} {year}. Ensure you find any interesting and relevant information. Use ALL of the tools avaliable to you Dont just use one.
+    The current year is {year}. rephrase your search queries each time you use the search tool and make sure they are unique. Choose a different search query each time! We want a diverse set of information. 
+    DONT REPEAT YOUSELF when using the search tools! Use all of your tools not just one!
+    Chose a random rsult each time, not just the first one.
+  expected_output: >
+    Research for the ideas for 2 full blog posts about the ideas created by the ideas_task. 
+reporting_task:
+  description: >
+    For each of the 2 idea, review the context and expand each topic into 2 FULL BLOG POSTs of no less than 600 words. 
+    Ensure each blog post is detailed and contains relevant information. If more information is needed, consult your coworker. 
+    Format each as a readable and informative blog post of no less than 600 words EACH. Avoid using "Conclusion" or "Call to action" 
+    and steer clear of run-on sentences. They should be professional but witty. Avoid large words and run-on sentences. 
+    Aim for a cool tone that doesn't sound like an AI.
+
+  expected_output: >
+    2 fully-fledged blog posts with main topics and interesting facts of no less than 600 words EACH. Each should be formatted in markdown (without '```'), 
+    separated by three spaces, and have a unique title.

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Writer</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .input-section {
+            flex: 1;
+        }
+        .console-log {
+            flex: 1;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            padding: 10px;
+            background-color: #2a2a2a;
+        }
+        .output-section {
+            margin-top: 20px;
+            border: 1px solid #444;
+            padding: 10px;
+            min-height: 200px;
+            background-color: #2a2a2a;
+        }
+        input[type="text"] {
+            width: 100%;
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #FFD700;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #FFC700;
+        }
+        h1, h3 {
+            color: #FFD700;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/api/placeholder/150/60" alt="Bold Street AI Logo" class="logo">
+        <h1>Blog Writer</h1>
+    </div>
+    <div class="container">
+        <div class="input-section">
+            <form id="blogForm">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required><br>
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year" required><br>
+                <button type="submit">Generate Blog</button>
+            </form>
+        </div>
+        <div class="console-log" id="consoleLog">
+            <h3>Console Log:</h3>
+        </div>
+    </div>
+    <div class="output-section" id="output">
+        <h3>Generated Blog:</h3>
+    </div>
+    <script>
+        const SERVER_URL = 'http://localhost:8000';
+        const consoleLog = document.getElementById('consoleLog');
+        const output = document.getElementById('output');
+
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const location = document.getElementById('location').value;
+            const year = document.getElementById('year').value;
+
+            consoleLog.innerHTML = '<h3>Console Log:</h3>';
+            output.innerHTML = '<h3>Generated Blog:</h3>';
+
+            const formData = new FormData();
+            formData.append('location', location);
+            formData.append('year', year);
+
+            const eventSource = new EventSource(`${SERVER_URL}/write_blog/?location=${encodeURIComponent(location)}&year=${encodeURIComponent(year)}`);
+
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                if (data.type === 'log') {
+                    consoleLog.innerHTML += `<p>${data.message}</p>`;
+                    consoleLog.scrollTop = consoleLog.scrollHeight;
+                } else if (data.type === 'result') {
+                    output.innerHTML += `<pre>${data.content}</pre>`;
+                    eventSource.close();
+                }
+            };
+
+            eventSource.onerror = function(error) {
+                console.error('EventSource failed:', error);
+                eventSource.close();
+            };
+        });
+    </script>
+</body>
+</html>

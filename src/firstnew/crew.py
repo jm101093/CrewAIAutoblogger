@@ -37,7 +37,7 @@ s5 = InternetSearchTool()  # serper
 # Set environment variables
 os.environ["OPENAI_API_BASE"] = "http://localhost:1234/v1/"
 os.environ["OPENAI_API_KEY"] = "lm-studio"
-os.environ["ANTHROPIC_API_KEY"] = "sk-ant-api03-Your key-MUFOd8FHzbeBobvkvPtA2giLxQ-6CD-ZZw-ZSNnUAAA"
+os.environ["ANTHROPIC_API_KEY"] = ""
 
 # LLM configurations
 llm_openai = ChatOpenAI(
